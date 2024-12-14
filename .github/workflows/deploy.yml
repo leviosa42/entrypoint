@@ -30,7 +30,7 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "motch"
-          entrypoint: "deno task denodeploy:serve"
+          entrypoint: "serve.ts"
           root: ""
           
           
