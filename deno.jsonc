@@ -1,4 +1,8 @@
 {
+  "fmt": {
+    "indentWidth": 2,
+    "lineWidth": 120
+  },
   "imports": {
     "lume/": "https://deno.land/x/lume@v2.4.2/",
     "lume/cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.7.3/"
@@ -9,9 +13,10 @@
     "serve": "deno task lume -s"
   },
   "compilerOptions": {
-    "types": [
-      "lume/types.ts"
-    ]
+    // https://lume.land/plugins/jsx/#configuration
+    "jsx": "react-jsx",
+    "jsxImportSource": "npm:react@18",
+    "jsxImportSourceTypes": "npm:@types/react@18"
   },
   "exclude": [
     "./_site"

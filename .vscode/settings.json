@@ -3,6 +3,9 @@
     "deno.lint": true,
     "deno.unstable": true,
     "editor.formatOnSave": true,
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "denoland.vscode-deno"
+    },
     "[typescript]": {
         "editor.defaultFormatter": "denoland.vscode-deno"
     },

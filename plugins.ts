@@ -6,6 +6,8 @@ import favicon from "lume/plugins/favicon.ts";
 import metas from "lume/plugins/metas.ts";
 import postcss from "lume/plugins/postcss.ts";
 import transformImages from "lume/plugins/transform_images.ts";
+import jsx from "lume/plugins/jsx.ts";
+import mdx from "lume/plugins/mdx.ts";
 
 /** Configure the site */
 export default function () {
@@ -16,6 +18,8 @@ export default function () {
       .use(basePath())
       .mergeKey("extra_head", "stringArray")
       .use(transformImages())
+      .use(jsx())
+      .use(mdx())
       .use(simpleIcons());
 
     site.data("textColor", (hex: string) => {
