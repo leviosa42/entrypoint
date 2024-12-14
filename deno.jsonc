@@ -10,7 +10,8 @@
   "tasks": {
     "lume": "echo \"import 'lume/cli.ts'\" | deno run -A -",
     "build": "deno task lume",
-    "serve": "deno task lume -s"
+    "serve": "deno task lume -s",
+	"denodeploy:serve": "deno run -RN serve.ts"
   },
   "compilerOptions": {
     // https://lume.land/plugins/jsx/#configuration
