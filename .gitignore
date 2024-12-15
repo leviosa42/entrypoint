@@ -1,3 +1,5 @@
 _site
 deno.lock
 _cache
+
+node_modules
