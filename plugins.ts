@@ -9,6 +9,8 @@ import transformImages from "lume/plugins/transform_images.ts";
 import jsx from "lume/plugins/jsx.ts";
 import mdx from "lume/plugins/mdx.ts";
 
+import parse from "npm:html-react-parser";
+
 /** Configure the site */
 export default function () {
   return (site: Lume.Site) => {
@@ -28,6 +30,8 @@ export default function () {
       const onBlack = Math.abs(color.contrastWCAG21("black"));
       return (onWhite + 0.5) > onBlack ? "white" : "black";
     });
+
+    site.data("html2react", (html: string) => parse(html));
 
     site.copy([".jpg", ".webp", ".png"]);
   };

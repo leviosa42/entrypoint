@@ -1,7 +1,31 @@
-import parse from "npm:html-react-parser";
-
-export default (data, helpers) => {
-  const { textColor, header, links, children } = data;
+interface Props {
+  textColor: (hex: string) => string;
+  header: {
+    title: string;
+    avatar: string;
+    description?: string;
+  };
+  metas: {
+    title: string;
+    description: string;
+    image: string;
+    generator: boolean;
+    twitter: string;
+  };
+  links: {
+    type: string;
+    href: string;
+    text: string;
+    hex?: string;
+    textColor?: string;
+    only_icon?: boolean;
+  }[];
+  children: JSX.Element;
+}
+export default (
+  { textColor, html2react, header, links, children }: Props & Lume.Data,
+  { simpleicons }: Lume.Helpers,
+) => {
   return (
     <html lang="ja">
       <head>
@@ -59,7 +83,7 @@ export default (data, helpers) => {
             return (
               <ul className="icon-list">
                 {icons.map((link, idx) => {
-                  const hex = helpers.simpleicons(link.type, "hex");
+                  const hex = simpleicons(link.type, "hex");
                   return (
                     <li className="icon-list-item" key={idx}>
                       <a
@@ -67,10 +91,10 @@ export default (data, helpers) => {
                         className="button"
                         style={{
                           "--bg-color": link?.hex || `#${hex || "fff"}`,
-                          "--text-color": link?.textColor || data.textColor(hex || "fff"),
-                        }}
+                          "--text-color": link?.textColor || textColor(hex || "fff"),
+                        } as React.CSSProperties}
                       >
-                        {parse(helpers.simpleicons(link.type, "svg"))}
+                        {html2react(simpleicons(link.type, "svg"))}
                       </a>
                     </li>
                   );
@@ -81,7 +105,7 @@ export default (data, helpers) => {
 
           <ul className="link-list">
             {links.filter((link) => !link.only_icon).map((link, idx) => {
-              const hex = helpers.simpleicons(link.type, "hex");
+              const hex = simpleicons(link.type, "hex");
               return (
                 <li className="link-list-item" key={idx}>
                   <a
@@ -89,10 +113,10 @@ export default (data, helpers) => {
                     className="button"
                     style={{
                       "--bg-color": link?.hex || `#${hex || "fff"}`,
-                      "--text-color": link?.textColor || data.textColor(hex || "fff"),
-                    }}
+                      "--text-color": link?.textColor || textColor(hex || "fff"),
+                    } as React.CSSProperties}
                   >
-                    {parse(helpers.simpleicons(link.type, "svg"))}
+                    {html2react(simpleicons(link.type, "svg"))}
                     {link.text}
                   </a>
                 </li>
