@@ -1,5 +1,6 @@
 interface Props {
   textColor: (hex: string) => string;
+  html2react: (html: string) => JSX.Element;
   header: {
     title: string;
     avatar: string;

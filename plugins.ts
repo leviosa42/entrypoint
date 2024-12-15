@@ -9,7 +9,8 @@ import transformImages from "lume/plugins/transform_images.ts";
 import jsx from "lume/plugins/jsx.ts";
 import mdx from "lume/plugins/mdx.ts";
 
-import parse from "npm:html-react-parser";
+import html2react from "npm:html-react-parser";
+import { html } from "https://deno.land/x/vento@v1.12.11/deps.ts";
 
 /** Configure the site */
 export default function () {
@@ -31,7 +32,7 @@ export default function () {
       return (onWhite + 0.5) > onBlack ? "white" : "black";
     });
 
-    site.data("html2react", parse);
+    site.data("html2react", html2react);
 
     site.copy([".jpg", ".webp", ".png"]);
   };
