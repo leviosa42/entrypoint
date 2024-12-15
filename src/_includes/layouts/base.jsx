@@ -1,16 +1,7 @@
-export const js = `
-                  let theme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches
-                    ? "dark"
-                  : "light");
-                  document.documentElement.dataset.theme = theme;
-                  function changeTheme() {
-                    theme = theme === "dark" ? "light" : "dark";
-                    localStorage.setItem("theme", theme);
-                    document.documentElement.dataset.theme = theme
-                  }
-`;
+import parse from "npm:html-react-parser";
+
 export default (data, helpers) => {
-  const { header, children } = data;
+  const { textColor, header, links, children } = data;
   return (
     <html lang="ja">
       <head>
@@ -48,10 +39,10 @@ export default (data, helpers) => {
               />
             }
             <button
-              class="button header-theme"
+              className="button header-theme"
               id="theme"
             >
-              <span class="icon">◐</span>
+              <span className="icon">◐</span>
             </button>
             <script
               dangerouslySetInnerHTML={{ __html: `document.getElementById("theme").onclick = () => changeTheme();` }}
@@ -60,6 +51,54 @@ export default (data, helpers) => {
             <h1 className="header-title">{header.title}</h1>
             {header.description && header.description}
           </header>
+
+          {((icons) => {
+            if (icons.length === 0) {
+              return;
+            }
+            return (
+              <ul className="icon-list">
+                {icons.map((link, idx) => {
+                  const hex = helpers.simpleicons(link.type, "hex");
+                  return (
+                    <li className="icon-list-item" key={idx}>
+                      <a
+                        href={link.href}
+                        className="button"
+                        style={{
+                          "--bg-color": link?.hex || `#${hex || "fff"}`,
+                          "--text-color": link?.textColor || data.textColor(hex || "fff"),
+                        }}
+                      >
+                        {parse(helpers.simpleicons(link.type, "svg"))}
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            );
+          })(links.filter((link) => link.only_icon))}
+
+          <ul className="link-list">
+            {links.filter((link) => !link.only_icon).map((link, idx) => {
+              const hex = helpers.simpleicons(link.type, "hex");
+              return (
+                <li className="link-list-item" key={idx}>
+                  <a
+                    href={link.href}
+                    className="button"
+                    style={{
+                      "--bg-color": link?.hex || `#${hex || "fff"}`,
+                      "--text-color": link?.textColor || data.textColor(hex || "fff"),
+                    }}
+                  >
+                    {parse(helpers.simpleicons(link.type, "svg"))}
+                    {link.text}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
           {children}
         </main>
       </body>
