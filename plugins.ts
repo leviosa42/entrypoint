@@ -31,7 +31,7 @@ export default function () {
       return (onWhite + 0.5) > onBlack ? "white" : "black";
     });
 
-    site.data("html2react", (html: string) => parse(html));
+    site.data("html2react", parse);
 
     site.copy([".jpg", ".webp", ".png"]);
   };
