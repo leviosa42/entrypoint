@@ -9,7 +9,7 @@ import transformImages from "lume/plugins/transform_images.ts";
 import jsx from "lume/plugins/jsx.ts";
 import mdx from "lume/plugins/mdx.ts";
 
-import html2react from "npm:html-react-parser@5.1.19";
+import html2react from "npm:html-react-parser";
 import { html } from "https://deno.land/x/vento@v1.12.11/deps.ts";
 
 /** Configure the site */
