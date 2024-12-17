@@ -19,6 +19,6 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: |
             deno task build
-            pages deploy _site --project-name=${{ github.repository }}
+            pages deploy _site --project-name=entrypoint
           # Optional: Enable this if you want to have GitHub Deployments triggered
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
