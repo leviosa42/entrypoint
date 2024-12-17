@@ -34,5 +34,9 @@ export default function () {
     site.data("html2react", html2react);
 
     site.copy([".jpg", ".webp", ".png"]);
+
+    site.ignore(
+      "components",
+    );
   };
 }
