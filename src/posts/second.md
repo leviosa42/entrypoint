@@ -1,10 +1,10 @@
 ---
 layout: layouts/post.tsx
 type: post
-title: My First Post
+title: My second post.
 description: description
-pubDate: 2024-12-17
-tags: ["Lume", "TypeScript"]
+pubDate: 2024-12-18
+tags: ["Lume", "mdx"]
 ---
 
 This is my first post. I hope you enjoy it!

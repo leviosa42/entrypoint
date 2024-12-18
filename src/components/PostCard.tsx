@@ -6,13 +6,6 @@ export interface PostCardProps {
   tags: string[];
 }
 
-export const css = `
-.post-card {
-  margin-bottom: 2rem;
-  background-color: #00ff00;
-}
-`;
-
 export default ({
   title,
   description,
@@ -26,13 +19,9 @@ export default ({
         href={url}
       >
         <h2>{title}</h2>
-        <p>{description}</p>
-        {tags.length > 0 && (
-          <ul>
-            {tags.map((tag, idx) => <li key={idx}>{tag}</li>)}
-          </ul>
-        )}
       </a>
+      <p>{description}</p>
+      {tags.length > 0 && <span>{tags.join(", ")}</span>}
     </div>
   );
 };
